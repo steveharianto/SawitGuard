@@ -162,6 +162,55 @@
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Mengirim...';
       submitBtn.disabled = true;
       
+      // Get form values
+      const jenisGangguan = document.getElementById('jenisGangguan').value;
+      const deskripsi = document.getElementById('deskripsi').value;
+      const lokasi = document.getElementById('lokasi').value;
+      const latitude = document.getElementById('latitude').value;
+      const longitude = document.getElementById('longitude').value;
+      
+      // Create a preview image URL if file is uploaded
+      let previewImageURL = '';
+      const preview = document.getElementById('preview');
+      const previewImg = preview.querySelector('img');
+      if (previewImg) {
+        previewImageURL = previewImg.src;
+      }
+      
+      // Generate a unique ID for the report
+      const timestamp = new Date().getTime();
+      const reportId = `LP-${new Date().toISOString().slice(0, 10).replace(/-/g, '')}-${Math.floor(Math.random() * 1000).toString().padStart(3, '0')}`;
+      
+      // Create report object
+      const report = {
+        id: reportId,
+        tanggal: new Date().toISOString(),
+        jenisGangguan: jenisGangguan,
+        deskripsi: deskripsi,
+        lokasi: lokasi,
+        koordinat: {
+          latitude: latitude,
+          longitude: longitude
+        },
+        gambar: previewImageURL,
+        status: 'Diproses',
+        pelapor: 'Budi',
+        tindakLanjut: '',
+        lastUpdated: new Date().toISOString()
+      };
+      
+      // Get existing reports from localStorage
+      const existingReports = JSON.parse(localStorage.getItem('sawitGuardReports') || '[]');
+      
+      // Add the new report to the beginning of the array
+      existingReports.unshift(report);
+      
+      // Save updated reports back to localStorage
+      localStorage.setItem('sawitGuardReports', JSON.stringify(existingReports));
+      
+      // Save current report to session storage for confirmation page
+      sessionStorage.setItem('currentReport', JSON.stringify(report));
+      
       // Simulate form submission (would be AJAX in real app)
       setTimeout(() => {
         window.location.href = "konfirmasi.html";

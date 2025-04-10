@@ -251,53 +251,116 @@
 
   <!-- Script -->
   <script>
-    // Toggle filter functionality
-    document.getElementById('filterStatus').addEventListener('change', filterLaporan);
-    document.getElementById('filterJenis').addEventListener('change', filterLaporan);
+    // Load reports from localStorage
+    let allReports = [];
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Get reports from localStorage
+      allReports = JSON.parse(localStorage.getItem('sawitGuardReports') || '[]');
+      
+      // Display reports
+      renderReports();
+      
+      // Toggle filter functionality
+      document.getElementById('filterStatus').addEventListener('change', filterLaporan);
+      document.getElementById('filterJenis').addEventListener('change', filterLaporan);
+    });
+    
+    function renderReports() {
+      const mobileContainer = document.querySelector('.lg\\:hidden');
+      const desktopContainer = document.querySelector('.lg\\:grid');
+      
+      // Clear existing content
+      mobileContainer.innerHTML = '';
+      desktopContainer.innerHTML = '';
+      
+      if (allReports.length === 0) {
+        // Show empty state
+        document.getElementById('emptyState').classList.remove('hidden');
+        return;
+      }
+      
+      // Hide empty state
+      document.getElementById('emptyState').classList.add('hidden');
+      
+      // Render each report
+      allReports.forEach(report => {
+        // Determine status class
+        const statusClass = report.status.toLowerCase() === 'diproses' ? 'border-yellow-500' : 'border-green-500';
+        const statusBgClass = report.status.toLowerCase() === 'diproses' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800';
+        
+        // Format date
+        const reportDate = new Date(report.tanggal);
+        const dateFormatted = reportDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+        
+        // Create mobile item
+        const mobileItem = document.createElement('div');
+        mobileItem.className = `bg-white rounded-lg shadow-md overflow-hidden border-l-4 ${statusClass} hover:shadow-lg transition-shadow mb-4`;
+        mobileItem.innerHTML = `
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-primary">${report.jenisGangguan}</h3>
+              <span class="${statusBgClass} text-xs px-2 py-1 rounded-full">${report.status}</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-2">${report.deskripsi.substring(0, 100)}${report.deskripsi.length > 100 ? '...' : ''}</p>
+            <div class="flex justify-between text-xs text-gray-500">
+              <span><i class="far fa-calendar-alt mr-1"></i>${dateFormatted}</span>
+              <span><i class="fas fa-map-marker-alt mr-1"></i>${report.lokasi}</span>
+            </div>
+          </div>
+          <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
+            <span class="text-xs text-gray-500">ID: ${report.id}</span>
+            <button class="text-primary text-sm" onclick="showDetail('${report.id}')">
+              <i class="fas fa-chevron-right"></i> Detail
+            </button>
+          </div>
+        `;
+        mobileContainer.appendChild(mobileItem);
+        
+        // Create desktop item
+        const desktopItem = document.createElement('div');
+        desktopItem.className = `bg-white rounded-lg shadow-md overflow-hidden border-l-4 ${statusClass} hover:shadow-lg transition-shadow card-hover`;
+        desktopItem.innerHTML = `
+          <div class="p-4">
+            <div class="flex justify-between items-start mb-2">
+              <h3 class="font-bold text-primary">${report.jenisGangguan}</h3>
+              <span class="${statusBgClass} text-xs px-2 py-1 rounded-full">${report.status}</span>
+            </div>
+            <p class="text-gray-600 text-sm mb-2">${report.deskripsi.substring(0, 100)}${report.deskripsi.length > 100 ? '...' : ''}</p>
+            <div class="flex justify-between text-xs text-gray-500">
+              <span><i class="far fa-calendar-alt mr-1"></i>${dateFormatted}</span>
+              <span><i class="fas fa-map-marker-alt mr-1"></i>${report.lokasi}</span>
+            </div>
+          </div>
+          <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
+            <span class="text-xs text-gray-500">ID: ${report.id}</span>
+            <button class="text-primary text-sm" onclick="showDetail('${report.id}')">
+              <i class="fas fa-chevron-right"></i> Detail
+            </button>
+          </div>
+        `;
+        desktopContainer.appendChild(desktopItem);
+      });
+    }
     
     function filterLaporan() {
-      // In a real app, this would filter the list based on selections
+      // Get filter values
       const status = document.getElementById('filterStatus').value;
       const jenis = document.getElementById('filterJenis').value;
       
-      // Demo implementation that would be replaced with actual filtering
-      const mobileItems = document.querySelectorAll('.lg\\:hidden > div');
-      const desktopItems = document.querySelectorAll('.lg\\:grid > div');
-      let visibleCount = 0;
+      // Get reports from localStorage
+      const reports = JSON.parse(localStorage.getItem('sawitGuardReports') || '[]');
       
-      // Filter mobile items
-      mobileItems.forEach(item => {
-        const itemStatus = item.querySelector('.rounded-full').textContent.toLowerCase();
-        const itemJenis = item.querySelector('h3').textContent.toLowerCase();
+      // Filter reports
+      allReports = reports.filter(report => {
+        const statusMatch = status === 'all' || report.status.toLowerCase() === status;
+        const jenisMatch = jenis === 'all' || report.jenisGangguan.toLowerCase().includes(jenis);
         
-        const statusMatch = status === 'all' || itemStatus.includes(status);
-        const jenisMatch = jenis === 'all' || itemJenis.includes(jenis);
-        
-        if (statusMatch && jenisMatch) {
-          item.classList.remove('hidden');
-          visibleCount++;
-        } else {
-          item.classList.add('hidden');
-        }
+        return statusMatch && jenisMatch;
       });
       
-      // Filter desktop items
-      desktopItems.forEach(item => {
-        const itemStatus = item.querySelector('.rounded-full').textContent.toLowerCase();
-        const itemJenis = item.querySelector('h3').textContent.toLowerCase();
-        
-        const statusMatch = status === 'all' || itemStatus.includes(status);
-        const jenisMatch = jenis === 'all' || itemJenis.includes(jenis);
-        
-        if (statusMatch && jenisMatch) {
-          item.classList.remove('hidden');
-        } else {
-          item.classList.add('hidden');
-        }
-      });
-      
-      // Show empty state if no visible items
-      document.getElementById('emptyState').classList.toggle('hidden', visibleCount > 0);
+      // Display filtered reports
+      renderReports();
     }
     
     // Show detail modal
@@ -305,88 +368,75 @@
       const modal = document.getElementById('detailModal');
       const content = document.getElementById('modalContent');
       
-      // Mock data - in a real app, this would fetch data based on the ID
-      let detailHTML = '';
+      // Find the report
+      const report = allReports.find(r => r.id === id);
       
-      if (id === 'LP-20230615-001') {
-        detailHTML = `
-          <div class="space-y-4 lg:space-y-6 lg:w-full">
-            <div class="flex items-center">
-              <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full mr-2">Diproses</span>
-              <span class="text-sm text-gray-500">Terakhir diupdate: 16 Juni 2023</span>
+      if (!report) {
+        content.innerHTML = '<p>Laporan tidak ditemukan.</p>';
+        modal.classList.remove('hidden');
+        return;
+      }
+      
+      // Format date
+      const reportDate = new Date(report.tanggal);
+      const dateFormatted = reportDate.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      
+      // Format last updated
+      const lastUpdated = new Date(report.lastUpdated);
+      const lastUpdatedFormatted = lastUpdated.toLocaleDateString('id-ID', { day: 'numeric', month: 'long', year: 'numeric' });
+      
+      // Determine status class
+      const statusClass = report.status.toLowerCase() === 'diproses' ? 'bg-yellow-100 text-yellow-800' : 'bg-green-100 text-green-800';
+      
+      // Create detail HTML
+      let detailHTML = `
+        <div class="space-y-4 lg:space-y-6 lg:w-full">
+          <div class="flex items-center">
+            <span class="${statusClass} text-xs px-2 py-1 rounded-full mr-2">${report.status}</span>
+            <span class="text-sm text-gray-500">Terakhir diupdate: ${lastUpdatedFormatted}</span>
+          </div>
+          
+          <h4 class="font-bold text-primary lg:text-xl">${report.jenisGangguan}</h4>
+          
+          <p class="text-gray-600 lg:text-base">${report.deskripsi}</p>
+          
+          <div class="bg-gray-50 p-3 rounded-lg lg:p-5">
+            <div class="flex justify-between mb-2">
+              <span class="text-sm font-medium lg:text-base">ID Laporan</span>
+              <span class="text-sm lg:text-base">${report.id}</span>
             </div>
-            
-            <h4 class="font-bold text-primary lg:text-xl">Jalan Rusak</h4>
-            
-            <p class="text-gray-600 lg:text-base">Jalan menuju blok B3 berlubang dan sulit dilalui kendaraan. Akibatnya, pengangkutan hasil panen menjadi terhambat.</p>
-            
-            <div class="bg-gray-50 p-3 rounded-lg lg:p-5">
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium lg:text-base">ID Laporan</span>
-                <span class="text-sm lg:text-base">LP-20230615-001</span>
-              </div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium lg:text-base">Tanggal</span>
-                <span class="text-sm lg:text-base">15 Juni 2023</span>
-              </div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium lg:text-base">Lokasi</span>
-                <span class="text-sm lg:text-base">Blok B3</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-sm font-medium lg:text-base">Pelapor</span>
-                <span class="text-sm lg:text-base">Budi</span>
-              </div>
+            <div class="flex justify-between mb-2">
+              <span class="text-sm font-medium lg:text-base">Tanggal</span>
+              <span class="text-sm lg:text-base">${dateFormatted}</span>
             </div>
-            
-            <div class="border border-gray-200 rounded-lg overflow-hidden">
-              <img src="https://via.placeholder.com/400x200?text=Foto+Jalan+Rusak" alt="Jalan Rusak" class="w-full">
+            <div class="flex justify-between mb-2">
+              <span class="text-sm font-medium lg:text-base">Lokasi</span>
+              <span class="text-sm lg:text-base">${report.lokasi}</span>
             </div>
-            
-            <div>
-              <h5 class="font-medium mb-2 lg:text-lg">Tindak Lanjut:</h5>
-              <p class="text-sm text-gray-600 lg:text-base">Tim maintenance akan melakukan perbaikan pada tanggal 18 Juni 2023.</p>
+            <div class="flex justify-between">
+              <span class="text-sm font-medium lg:text-base">Pelapor</span>
+              <span class="text-sm lg:text-base">${report.pelapor}</span>
             </div>
           </div>
-        `;
-      } else {
-        detailHTML = `
-          <div class="space-y-4 lg:space-y-6 lg:w-full">
-            <div class="flex items-center">
-              <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mr-2">Selesai</span>
-              <span class="text-sm text-gray-500">Terakhir diupdate: 12 Juni 2023</span>
-            </div>
-            
-            <h4 class="font-bold text-primary lg:text-xl">${id === 'LP-20230610-003' ? 'Serangan Hama' : 'Kerusakan Fasilitas'}</h4>
-            
-            <p class="text-gray-600 lg:text-base">${id === 'LP-20230610-003' ? 'Terdapat serangan hama belalang pada tanaman muda di blok A2.' : 'Jembatan timbang di area pengumpulan hasil rusak.'}</p>
-            
-            <div class="bg-gray-50 p-3 rounded-lg lg:p-5">
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium lg:text-base">ID Laporan</span>
-                <span class="text-sm lg:text-base">${id}</span>
-              </div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium lg:text-base">Tanggal</span>
-                <span class="text-sm lg:text-base">${id === 'LP-20230610-003' ? '10 Juni 2023' : '5 Juni 2023'}</span>
-              </div>
-              <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium lg:text-base">Lokasi</span>
-                <span class="text-sm lg:text-base">${id === 'LP-20230610-003' ? 'Blok A2' : 'Area Pengumpulan'}</span>
-              </div>
-              <div class="flex justify-between">
-                <span class="text-sm font-medium lg:text-base">Pelapor</span>
-                <span class="text-sm lg:text-base">Budi</span>
-              </div>
-            </div>
-            
-            <div>
-              <h5 class="font-medium mb-2 lg:text-lg">Tindak Lanjut:</h5>
-              <p class="text-sm text-gray-600 lg:text-base">${id === 'LP-20230610-003' ? 'Penyemprotan pestisida telah dilakukan pada tanggal 11 Juni 2023.' : 'Jembatan timbang telah diperbaiki dan dapat digunakan kembali sejak 8 Juni 2023.'}</p>
-            </div>
+      `;
+      
+      // Add image if available
+      if (report.gambar) {
+        detailHTML += `
+          <div class="border border-gray-200 rounded-lg overflow-hidden">
+            <img src="${report.gambar}" alt="${report.jenisGangguan}" class="w-full">
           </div>
         `;
       }
+      
+      // Add follow-up information
+      detailHTML += `
+          <div>
+            <h5 class="font-medium mb-2 lg:text-lg">Tindak Lanjut:</h5>
+            <p class="text-sm text-gray-600 lg:text-base">${report.tindakLanjut || 'Belum ada tindak lanjut.'}</p>
+          </div>
+        </div>
+      `;
       
       content.innerHTML = detailHTML;
       modal.classList.remove('hidden');

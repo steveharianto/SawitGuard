@@ -41,166 +41,100 @@
   </header>
 
   <!-- Main Content -->
-  <main class="container mx-auto p-4 desktop-container">
-    <div class="lg:max-w-4xl lg:mx-auto">
-      <div class="flex justify-center mb-6 lg:mb-8">
-        <div class="bg-white rounded-full p-3 shadow-md text-primary lg:p-4">
-          <i class="fas fa-book text-2xl lg:text-3xl"></i>
-        </div>
+  <main class="flex-1 overflow-y-auto pb-20 lg:pb-2">
+    <div class="container mx-auto px-4 pt-6 lg:px-8 lg:pt-8">
+      <!-- Page Title -->
+      <div class="flex items-center justify-between mb-6">
+        <h1 class="text-xl font-bold text-primary lg:text-2xl">Panduan Penggunaan</h1>
       </div>
-      
-      <!-- Panduan Content -->
-      <div class="bg-white rounded-lg shadow-md p-6 lg:p-8">
-        <div class="lg:grid lg:grid-cols-2 lg:gap-8">
-          <div class="mb-8 lg:mb-0">
-            <h2 class="text-lg font-bold text-primary mb-4 flex items-center lg:text-xl">
-              <span class="flex items-center justify-center bg-primary text-white rounded-full w-8 h-8 mr-3 lg:w-10 lg:h-10">1</span>
-              Cara Melaporkan Gangguan
-            </h2>
-            <ol class="space-y-4 text-gray-700 lg:text-base">
-              <li class="flex">
-                <div class="mr-3 text-secondary">
-                  <i class="fas fa-arrow-right"></i>
-                </div>
-                <p>Dari halaman utama, tekan tombol <span class="font-medium">"Laporkan Gangguan"</span></p>
-              </li>
-              <li class="flex">
-                <div class="mr-3 text-secondary">
-                  <i class="fas fa-arrow-right"></i>
-                </div>
-                <p>Pilih jenis gangguan dari menu dropdown yang tersedia</p>
-              </li>
-              <li class="flex">
-                <div class="mr-3 text-secondary">
-                  <i class="fas fa-arrow-right"></i>
-                </div>
-                <p>Isi deskripsi gangguan dengan jelas dan detail</p>
-              </li>
-              <li class="flex">
-                <div class="mr-3 text-secondary">
-                  <i class="fas fa-arrow-right"></i>
-                </div>
-                <p>Unggah foto gangguan (opsional tapi sangat disarankan)</p>
-              </li>
-              <li class="flex">
-                <div class="mr-3 text-secondary">
-                  <i class="fas fa-arrow-right"></i>
-                </div>
-                <p>Tentukan lokasi gangguan dengan menggunakan tombol "Lokasi Otomatis" atau isi manual</p>
-              </li>
-              <li class="flex">
-                <div class="mr-3 text-secondary">
-                  <i class="fas fa-arrow-right"></i>
-                </div>
-                <p>Tekan tombol "Kirim Laporan" untuk mengirimkan laporan</p>
-              </li>
-            </ol>
-            <div class="mt-4 border-l-4 border-primary pl-3 bg-green-50 p-2 text-sm text-gray-600 lg:p-3 lg:text-base">
-              <p><strong>Tips:</strong> Pastikan deskripsi jelas dan foto yang diunggah menampilkan gangguan dengan baik untuk mempercepat penanganan.</p>
-            </div>
-          </div>
-          
-          <div class="mb-8 lg:mb-0">
-            <h2 class="text-lg font-bold text-primary mb-4 flex items-center lg:text-xl">
-              <span class="flex items-center justify-center bg-primary text-white rounded-full w-8 h-8 mr-3 lg:w-10 lg:h-10">2</span>
-              Melihat Riwayat Laporan
-            </h2>
-            <ul class="space-y-4 text-gray-700 lg:text-base">
-              <li class="flex">
-                <div class="mr-3 text-secondary">
-                  <i class="fas fa-arrow-right"></i>
-                </div>
-                <p>Dari halaman utama, tekan tombol <span class="font-medium">"Riwayat Laporan"</span></p>
-              </li>
-              <li class="flex">
-                <div class="mr-3 text-secondary">
-                  <i class="fas fa-arrow-right"></i>
-                </div>
-                <p>Gunakan filter untuk mencari laporan berdasarkan status atau jenis gangguan</p>
-              </li>
-              <li class="flex">
-                <div class="mr-3 text-secondary">
-                  <i class="fas fa-arrow-right"></i>
-                </div>
-                <p>Tekan tombol "Detail" untuk melihat informasi lengkap tentang laporan</p>
-              </li>
-            </ul>
-            <div class="mt-4 bg-blue-50 p-3 rounded-md text-sm flex items-start lg:text-base">
-              <i class="fas fa-info-circle text-blue-500 mr-2 mt-1"></i>
-              <p class="text-gray-600">Status laporan ditandai dengan warna: <span class="inline-block bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full mr-1">Diproses</span> dan <span class="inline-block bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Selesai</span></p>
+
+      <!-- Panduan Cards -->
+      <div class="space-y-4 lg:space-y-6">
+        <!-- Card 1 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="p-4 lg:p-6">
+            <h3 class="text-primary font-bold mb-3 lg:text-lg">Cara Melaporkan Gangguan</h3>
+            <div class="space-y-3">
+              <div class="flex">
+                <div class="bg-primary rounded-full text-white w-6 h-6 flex items-center justify-center mr-3 shrink-0">1</div>
+                <p class="text-gray-700 text-sm lg:text-base">Buka halaman utama dan klik tombol "Laporkan Gangguan" atau buka halaman "Form Pelaporan" melalui menu navigasi</p>
+              </div>
+              <div class="flex">
+                <div class="bg-primary rounded-full text-white w-6 h-6 flex items-center justify-center mr-3 shrink-0">2</div>
+                <p class="text-gray-700 text-sm lg:text-base">Pilih jenis gangguan dari daftar yang tersedia</p>
+              </div>
+              <div class="flex">
+                <div class="bg-primary rounded-full text-white w-6 h-6 flex items-center justify-center mr-3 shrink-0">3</div>
+                <p class="text-gray-700 text-sm lg:text-base">Isi detail gangguan dengan jelas dan lengkap pada formulir</p>
+              </div>
+              <div class="flex">
+                <div class="bg-primary rounded-full text-white w-6 h-6 flex items-center justify-center mr-3 shrink-0">4</div>
+                <p class="text-gray-700 text-sm lg:text-base">Tambahkan foto gangguan untuk memperjelas laporan (opsional)</p>
+              </div>
+              <div class="flex">
+                <div class="bg-primary rounded-full text-white w-6 h-6 flex items-center justify-center mr-3 shrink-0">5</div>
+                <p class="text-gray-700 text-sm lg:text-base">Klik tombol "Kirim Laporan" untuk mengirimkan laporan Anda</p>
+              </div>
             </div>
           </div>
         </div>
-        
-        <div class="lg:grid lg:grid-cols-2 lg:gap-8 lg:mt-8">
-          <div class="mb-8 lg:mb-0">
-            <h2 class="text-lg font-bold text-primary mb-4 flex items-center lg:text-xl">
-              <span class="flex items-center justify-center bg-primary text-white rounded-full w-8 h-8 mr-3 lg:w-10 lg:h-10">3</span>
-              Jenis-jenis Gangguan
-            </h2>
-            <div class="space-y-3 lg:space-y-4">
-              <div class="flex items-start bg-gray-50 p-3 rounded-md lg:p-4">
-                <div class="mr-3 text-primary text-xl lg:text-2xl">
-                  <i class="fas fa-road"></i>
-                </div>
-                <div>
-                  <h3 class="font-medium text-primary lg:text-lg">Jalan Rusak</h3>
-                  <p class="text-sm text-gray-600 lg:text-base">Kerusakan jalan yang menghambat akses atau transportasi di area kebun</p>
-                </div>
+
+        <!-- Card 2 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="p-4 lg:p-6">
+            <h3 class="text-primary font-bold mb-3 lg:text-lg">Melihat Riwayat Laporan</h3>
+            <div class="space-y-3">
+              <div class="flex">
+                <div class="bg-primary rounded-full text-white w-6 h-6 flex items-center justify-center mr-3 shrink-0">1</div>
+                <p class="text-gray-700 text-sm lg:text-base">Buka halaman "Riwayat" melalui menu navigasi</p>
               </div>
-              <div class="flex items-start bg-gray-50 p-3 rounded-md lg:p-4">
-                <div class="mr-3 text-primary text-xl lg:text-2xl">
-                  <i class="fas fa-bug"></i>
-                </div>
-                <div>
-                  <h3 class="font-medium text-primary lg:text-lg">Serangan Hama</h3>
-                  <p class="text-sm text-gray-600 lg:text-base">Tanda-tanda serangan hama seperti tikus, belalang, atau ulat pada tanaman</p>
-                </div>
+              <div class="flex">
+                <div class="bg-primary rounded-full text-white w-6 h-6 flex items-center justify-center mr-3 shrink-0">2</div>
+                <p class="text-gray-700 text-sm lg:text-base">Semua laporan yang telah dikirim akan tampil dalam daftar</p>
               </div>
-              <div class="flex items-start bg-gray-50 p-3 rounded-md lg:p-4">
-                <div class="mr-3 text-primary text-xl lg:text-2xl">
-                  <i class="fas fa-tools"></i>
-                </div>
-                <div>
-                  <h3 class="font-medium text-primary lg:text-lg">Kerusakan Fasilitas</h3>
-                  <p class="text-sm text-gray-600 lg:text-base">Kerusakan pada fasilitas kebun seperti jembatan timbang, gudang, atau saluran irigasi</p>
-                </div>
+              <div class="flex">
+                <div class="bg-primary rounded-full text-white w-6 h-6 flex items-center justify-center mr-3 shrink-0">3</div>
+                <p class="text-gray-700 text-sm lg:text-base">Gunakan filter untuk mencari laporan berdasarkan status atau jenis gangguan</p>
+              </div>
+              <div class="flex">
+                <div class="bg-primary rounded-full text-white w-6 h-6 flex items-center justify-center mr-3 shrink-0">4</div>
+                <p class="text-gray-700 text-sm lg:text-base">Klik tombol "Detail" untuk melihat informasi lengkap suatu laporan</p>
               </div>
             </div>
           </div>
-          
-          <div>
-            <h2 class="text-lg font-bold text-primary mb-4 flex items-center lg:text-xl">
-              <span class="flex items-center justify-center bg-primary text-white rounded-full w-8 h-8 mr-3 lg:w-10 lg:h-10">4</span>
-              Bantuan
-            </h2>
-            <p class="text-gray-700 mb-4 lg:text-base">Jika Anda mengalami kesulitan dalam menggunakan aplikasi, silakan hubungi admin kami:</p>
-            <div class="bg-gray-50 p-4 rounded-lg lg:p-6">
-              <div class="flex items-center mb-2 lg:mb-4">
-                <i class="fas fa-phone-alt text-primary mr-3 lg:text-lg"></i>
-                <p class="text-gray-700 lg:text-base">0812-3456-7890</p>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="p-4 lg:p-6">
+            <h3 class="text-primary font-bold mb-3 lg:text-lg">Memahami Status Laporan</h3>
+            <div class="space-y-4">
+              <div class="flex items-center">
+                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full mr-3">Diproses</span>
+                <p class="text-gray-700 text-sm lg:text-base">Laporan sedang ditindaklanjuti oleh tim terkait</p>
               </div>
               <div class="flex items-center">
-                <i class="fas fa-envelope text-primary mr-3 lg:text-lg"></i>
-                <p class="text-gray-700 lg:text-base">admin@sawitguard.com</p>
+                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mr-3">Selesai</span>
+                <p class="text-gray-700 text-sm lg:text-base">Gangguan telah diperbaiki dan laporan telah ditutup</p>
               </div>
-            </div>
-            
-            <!-- PDF Download Button -->
-            <div class="mt-6 text-center lg:mt-8">
-              <button class="bg-secondary hover:bg-orange-500 text-white py-2 px-4 rounded-lg transition-all inline-flex items-center lg:py-3 lg:px-6 lg:text-lg">
-                <i class="fas fa-file-pdf mr-2"></i>
-                Unduh Panduan PDF
-              </button>
             </div>
           </div>
         </div>
+
+        <!-- Card 4 -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="p-4 lg:p-6">
+            <h3 class="text-primary font-bold mb-3 lg:text-lg">Tips Melaporkan Gangguan</h3>
+            <ul class="list-disc pl-5 space-y-2 text-sm text-gray-700 lg:text-base">
+              <li>Berikan deskripsi yang jelas dan detail tentang gangguan yang Anda temui</li>
+              <li>Sertakan lokasi yang spesifik untuk memudahkan tim dalam menemukan lokasi gangguan</li>
+              <li>Tambahkan foto yang jelas untuk membantu tim memahami kondisi gangguan</li>
+              <li>Pastikan Anda memilih kategori gangguan yang tepat</li>
+              <li>Jika memungkinkan, tambahkan informasi tentang dampak dari gangguan tersebut</li>
+            </ul>
+          </div>
+        </div>
       </div>
-      
-      <!-- Desktop Footer - Only visible on large screens -->
-      <footer class="hidden lg:block text-center mt-16 text-gray-600 p-4">
-        <p>© 2023 SawitGuard - Sistem Pelaporan Gangguan Kebun Kelapa Sawit</p>
-      </footer>
     </div>
   </main>
 
@@ -223,5 +157,24 @@
       <span class="text-xs mt-1 lg:text-sm lg:mt-2">Panduan</span>
     </a>
   </nav>
+
+  <!-- Script -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if reports exist in localStorage
+      const reports = JSON.parse(localStorage.getItem('sawitGuardReports') || '[]');
+      
+      // Update the report count in the navigation bar
+      const reportCount = document.getElementById('reportCount');
+      if (reportCount) {
+        if (reports.length > 0) {
+          reportCount.textContent = reports.length;
+          reportCount.classList.remove('hidden');
+        } else {
+          reportCount.classList.add('hidden');
+        }
+      }
+    });
+  </script>
 </body>
 </html>

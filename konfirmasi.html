@@ -90,16 +90,37 @@
 
   <!-- Script -->
   <script>
-    // Set current date and time for report
-    const now = new Date();
-    const options = { 
-      day: 'numeric', 
-      month: 'long', 
-      year: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
-    };
-    document.getElementById('waktuLaporan').textContent = now.toLocaleDateString('id-ID', options);
+    // Get current report from sessionStorage
+    const reportData = JSON.parse(sessionStorage.getItem('currentReport') || '{}');
+    
+    // Set report ID
+    if (reportData.id) {
+      document.getElementById('laporanId').textContent = reportData.id;
+    }
+    
+    // Set report timestamp
+    if (reportData.tanggal) {
+      const reportDate = new Date(reportData.tanggal);
+      const options = { 
+        day: 'numeric', 
+        month: 'long', 
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      document.getElementById('waktuLaporan').textContent = reportDate.toLocaleDateString('id-ID', options);
+    } else {
+      // If no report data, use current date and time
+      const now = new Date();
+      const options = { 
+        day: 'numeric', 
+        month: 'long', 
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+      };
+      document.getElementById('waktuLaporan').textContent = now.toLocaleDateString('id-ID', options);
+    }
     
     // Countdown timer
     let countdown = 5;
