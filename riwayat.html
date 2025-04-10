@@ -21,133 +21,227 @@
       }
     }
   </script>
+  <style>
+    /* Custom styles for desktop */
+    @media (min-width: 1024px) {
+      .desktop-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+      
+      .card-hover {
+        transition: transform 0.2s, box-shadow 0.2s;
+      }
+      
+      .card-hover:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      }
+    }
+  </style>
 </head>
 <body class="bg-gray-100 min-h-screen font-sans pb-16">
   <!-- Header -->
-  <header class="bg-primary text-white p-4 shadow-md">
-    <div class="flex items-center justify-center">
-      <img src="images/logo.png" alt="SawitGuard Logo" class="h-10 mr-3">
-      <h1 class="text-xl font-bold">Riwayat Laporan</h1>
+  <header class="bg-primary text-white p-4 shadow-md lg:py-6">
+    <div class="flex items-center justify-center desktop-container">
+      <img src="images/logo.png" alt="SawitGuard Logo" class="h-10 mr-3 lg:h-12">
+      <h1 class="text-xl font-bold lg:text-2xl">Riwayat Laporan</h1>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="container mx-auto p-4 max-w-md">
-    <div class="flex justify-center mb-6">
-      <div class="bg-white rounded-full p-3 shadow-md text-primary">
-        <i class="fas fa-history text-2xl"></i>
+  <main class="container mx-auto p-4 desktop-container">
+    <div class="lg:max-w-5xl lg:mx-auto">
+      <div class="flex justify-center mb-6 lg:mb-8">
+        <div class="bg-white rounded-full p-3 shadow-md text-primary lg:p-4">
+          <i class="fas fa-history text-2xl lg:text-3xl"></i>
+        </div>
       </div>
-    </div>
-    
-    <!-- Filter Option -->
-    <div class="bg-white rounded-lg shadow-sm mb-4 p-3 flex">
-      <select id="filterStatus" class="flex-1 border-0 focus:ring-0 text-gray-600 text-sm">
-        <option value="all">Semua Status</option>
-        <option value="diproses">Diproses</option>
-        <option value="selesai">Selesai</option>
-      </select>
-      <select id="filterJenis" class="flex-1 border-0 focus:ring-0 text-gray-600 text-sm">
-        <option value="all">Semua Jenis</option>
-        <option value="jalan">Jalan Rusak</option>
-        <option value="hama">Serangan Hama</option>
-        <option value="fasilitas">Kerusakan Fasilitas</option>
-      </select>
-    </div>
+      
+      <!-- Filter Option -->
+      <div class="bg-white rounded-lg shadow-sm mb-4 p-3 flex lg:p-4 lg:mb-6">
+        <select id="filterStatus" class="flex-1 border-0 focus:ring-0 text-gray-600 text-sm lg:text-base">
+          <option value="all">Semua Status</option>
+          <option value="diproses">Diproses</option>
+          <option value="selesai">Selesai</option>
+        </select>
+        <select id="filterJenis" class="flex-1 border-0 focus:ring-0 text-gray-600 text-sm lg:text-base">
+          <option value="all">Semua Jenis</option>
+          <option value="jalan">Jalan Rusak</option>
+          <option value="hama">Serangan Hama</option>
+          <option value="fasilitas">Kerusakan Fasilitas</option>
+        </select>
+      </div>
 
-    <!-- List Laporan -->
-    <div class="space-y-4" id="laporanList">
-      <!-- Laporan 1 -->
-      <div class="bg-white rounded-lg shadow-md overflow-hidden border-l-4 border-yellow-500 hover:shadow-lg transition-shadow">
-        <div class="p-4">
-          <div class="flex justify-between items-start mb-2">
-            <h3 class="font-bold text-primary">Jalan Rusak</h3>
-            <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Diproses</span>
+      <!-- List Laporan -->
+      <div class="space-y-4 lg:space-y-5" id="laporanList">
+        <!-- Laporan Grid for Desktop -->
+        <div class="hidden lg:grid lg:grid-cols-3 lg:gap-5">
+          <!-- Laporan 1 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden border-l-4 border-yellow-500 hover:shadow-lg transition-shadow card-hover">
+            <div class="p-4">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="font-bold text-primary">Jalan Rusak</h3>
+                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Diproses</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-2">Jalan menuju blok B3 berlubang dan sulit dilalui kendaraan</p>
+              <div class="flex justify-between text-xs text-gray-500">
+                <span><i class="far fa-calendar-alt mr-1"></i>15 Juni 2023</span>
+                <span><i class="fas fa-map-marker-alt mr-1"></i>Blok B3</span>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
+              <span class="text-xs text-gray-500">ID: LP-20230615-001</span>
+              <button class="text-primary text-sm" onclick="showDetail('LP-20230615-001')">
+                <i class="fas fa-chevron-right"></i> Detail
+              </button>
+            </div>
           </div>
-          <p class="text-gray-600 text-sm mb-2">Jalan menuju blok B3 berlubang dan sulit dilalui kendaraan</p>
-          <div class="flex justify-between text-xs text-gray-500">
-            <span><i class="far fa-calendar-alt mr-1"></i>15 Juni 2023</span>
-            <span><i class="fas fa-map-marker-alt mr-1"></i>Blok B3</span>
+          
+          <!-- Laporan 2 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden border-l-4 border-green-500 hover:shadow-lg transition-shadow card-hover">
+            <div class="p-4">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="font-bold text-primary">Serangan Hama</h3>
+                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Selesai</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-2">Terdapat serangan hama belalang pada tanaman muda di blok A2</p>
+              <div class="flex justify-between text-xs text-gray-500">
+                <span><i class="far fa-calendar-alt mr-1"></i>10 Juni 2023</span>
+                <span><i class="fas fa-map-marker-alt mr-1"></i>Blok A2</span>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
+              <span class="text-xs text-gray-500">ID: LP-20230610-003</span>
+              <button class="text-primary text-sm" onclick="showDetail('LP-20230610-003')">
+                <i class="fas fa-chevron-right"></i> Detail
+              </button>
+            </div>
+          </div>
+          
+          <!-- Laporan 3 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden border-l-4 border-green-500 hover:shadow-lg transition-shadow card-hover">
+            <div class="p-4">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="font-bold text-primary">Kerusakan Fasilitas</h3>
+                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Selesai</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-2">Jembatan timbang di area pengumpulan hasil rusak</p>
+              <div class="flex justify-between text-xs text-gray-500">
+                <span><i class="far fa-calendar-alt mr-1"></i>5 Juni 2023</span>
+                <span><i class="fas fa-map-marker-alt mr-1"></i>Area Pengumpulan</span>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
+              <span class="text-xs text-gray-500">ID: LP-20230605-002</span>
+              <button class="text-primary text-sm" onclick="showDetail('LP-20230605-002')">
+                <i class="fas fa-chevron-right"></i> Detail
+              </button>
+            </div>
           </div>
         </div>
-        <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
-          <span class="text-xs text-gray-500">ID: LP-20230615-001</span>
-          <button class="text-primary text-sm" onclick="showDetail('LP-20230615-001')">
-            <i class="fas fa-chevron-right"></i> Detail
-          </button>
+        
+        <!-- Mobile List View - Only visible on mobile -->
+        <div class="lg:hidden">
+          <!-- Laporan 1 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden border-l-4 border-yellow-500 hover:shadow-lg transition-shadow mb-4">
+            <div class="p-4">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="font-bold text-primary">Jalan Rusak</h3>
+                <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full">Diproses</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-2">Jalan menuju blok B3 berlubang dan sulit dilalui kendaraan</p>
+              <div class="flex justify-between text-xs text-gray-500">
+                <span><i class="far fa-calendar-alt mr-1"></i>15 Juni 2023</span>
+                <span><i class="fas fa-map-marker-alt mr-1"></i>Blok B3</span>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
+              <span class="text-xs text-gray-500">ID: LP-20230615-001</span>
+              <button class="text-primary text-sm" onclick="showDetail('LP-20230615-001')">
+                <i class="fas fa-chevron-right"></i> Detail
+              </button>
+            </div>
+          </div>
+          
+          <!-- Laporan 2 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden border-l-4 border-green-500 hover:shadow-lg transition-shadow mb-4">
+            <div class="p-4">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="font-bold text-primary">Serangan Hama</h3>
+                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Selesai</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-2">Terdapat serangan hama belalang pada tanaman muda di blok A2</p>
+              <div class="flex justify-between text-xs text-gray-500">
+                <span><i class="far fa-calendar-alt mr-1"></i>10 Juni 2023</span>
+                <span><i class="fas fa-map-marker-alt mr-1"></i>Blok A2</span>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
+              <span class="text-xs text-gray-500">ID: LP-20230610-003</span>
+              <button class="text-primary text-sm" onclick="showDetail('LP-20230610-003')">
+                <i class="fas fa-chevron-right"></i> Detail
+              </button>
+            </div>
+          </div>
+          
+          <!-- Laporan 3 -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden border-l-4 border-green-500 hover:shadow-lg transition-shadow">
+            <div class="p-4">
+              <div class="flex justify-between items-start mb-2">
+                <h3 class="font-bold text-primary">Kerusakan Fasilitas</h3>
+                <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Selesai</span>
+              </div>
+              <p class="text-gray-600 text-sm mb-2">Jembatan timbang di area pengumpulan hasil rusak</p>
+              <div class="flex justify-between text-xs text-gray-500">
+                <span><i class="far fa-calendar-alt mr-1"></i>5 Juni 2023</span>
+                <span><i class="fas fa-map-marker-alt mr-1"></i>Area Pengumpulan</span>
+              </div>
+            </div>
+            <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
+              <span class="text-xs text-gray-500">ID: LP-20230605-002</span>
+              <button class="text-primary text-sm" onclick="showDetail('LP-20230605-002')">
+                <i class="fas fa-chevron-right"></i> Detail
+              </button>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Empty State (Hidden by default) -->
+        <div id="emptyState" class="hidden bg-white rounded-lg shadow-md p-8 text-center">
+          <div class="text-gray-400 mb-4">
+            <i class="fas fa-clipboard-list text-5xl"></i>
+          </div>
+          <h3 class="text-lg font-medium text-gray-700 mb-2">Belum Ada Laporan</h3>
+          <p class="text-gray-500 mb-4">Anda belum memiliki riwayat laporan gangguan</p>
+          <a href="form-pelaporan.html" class="inline-block bg-primary hover:bg-green-800 text-white font-bold py-2 px-4 rounded-lg transition-all">
+            <i class="fas fa-plus mr-2"></i>Buat Laporan
+          </a>
         </div>
       </div>
       
-      <!-- Laporan 2 -->
-      <div class="bg-white rounded-lg shadow-md overflow-hidden border-l-4 border-green-500 hover:shadow-lg transition-shadow">
-        <div class="p-4">
-          <div class="flex justify-between items-start mb-2">
-            <h3 class="font-bold text-primary">Serangan Hama</h3>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Selesai</span>
-          </div>
-          <p class="text-gray-600 text-sm mb-2">Terdapat serangan hama belalang pada tanaman muda di blok A2</p>
-          <div class="flex justify-between text-xs text-gray-500">
-            <span><i class="far fa-calendar-alt mr-1"></i>10 Juni 2023</span>
-            <span><i class="fas fa-map-marker-alt mr-1"></i>Blok A2</span>
-          </div>
-        </div>
-        <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
-          <span class="text-xs text-gray-500">ID: LP-20230610-003</span>
-          <button class="text-primary text-sm" onclick="showDetail('LP-20230610-003')">
-            <i class="fas fa-chevron-right"></i> Detail
-          </button>
-        </div>
-      </div>
-      
-      <!-- Laporan 3 -->
-      <div class="bg-white rounded-lg shadow-md overflow-hidden border-l-4 border-green-500 hover:shadow-lg transition-shadow">
-        <div class="p-4">
-          <div class="flex justify-between items-start mb-2">
-            <h3 class="font-bold text-primary">Kerusakan Fasilitas</h3>
-            <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full">Selesai</span>
-          </div>
-          <p class="text-gray-600 text-sm mb-2">Jembatan timbang di area pengumpulan hasil rusak</p>
-          <div class="flex justify-between text-xs text-gray-500">
-            <span><i class="far fa-calendar-alt mr-1"></i>5 Juni 2023</span>
-            <span><i class="fas fa-map-marker-alt mr-1"></i>Area Pengumpulan</span>
-          </div>
-        </div>
-        <div class="bg-gray-50 px-4 py-2 flex justify-between items-center">
-          <span class="text-xs text-gray-500">ID: LP-20230605-002</span>
-          <button class="text-primary text-sm" onclick="showDetail('LP-20230605-002')">
-            <i class="fas fa-chevron-right"></i> Detail
-          </button>
-        </div>
-      </div>
-      
-      <!-- Empty State (Hidden by default) -->
-      <div id="emptyState" class="hidden bg-white rounded-lg shadow-md p-8 text-center">
-        <div class="text-gray-400 mb-4">
-          <i class="fas fa-clipboard-list text-5xl"></i>
-        </div>
-        <h3 class="text-lg font-medium text-gray-700 mb-2">Belum Ada Laporan</h3>
-        <p class="text-gray-500 mb-4">Anda belum memiliki riwayat laporan gangguan</p>
-        <a href="form-pelaporan.html" class="inline-block bg-primary hover:bg-green-800 text-white font-bold py-2 px-4 rounded-lg transition-all">
-          <i class="fas fa-plus mr-2"></i>Buat Laporan
-        </a>
-      </div>
+      <!-- Desktop Footer - Only visible on large screens -->
+      <footer class="hidden lg:block text-center mt-16 text-gray-600 p-4">
+        <p>© 2023 SawitGuard - Sistem Pelaporan Gangguan Kebun Kelapa Sawit</p>
+      </footer>
     </div>
   </main>
 
   <!-- Modal Detail Laporan (Hidden by default) -->
   <div id="detailModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
-    <div class="bg-white rounded-lg shadow-xl max-w-md w-full m-4">
-      <div class="flex justify-between items-center border-b p-4">
-        <h3 class="font-bold text-lg text-primary">Detail Laporan</h3>
+    <div class="bg-white rounded-lg shadow-xl max-w-md w-full m-4 lg:max-w-2xl">
+      <div class="flex justify-between items-center border-b p-4 lg:p-5">
+        <h3 class="font-bold text-lg text-primary lg:text-xl">Detail Laporan</h3>
         <button onclick="closeModal()" class="text-gray-500 hover:text-gray-700">
           <i class="fas fa-times"></i>
         </button>
       </div>
-      <div class="p-4">
-        <div id="modalContent">
+      <div class="p-4 lg:p-6">
+        <div id="modalContent" class="lg:flex lg:flex-wrap lg:gap-4">
           <!-- Content will be filled by JavaScript -->
         </div>
         <div class="mt-6 flex justify-end">
-          <button onclick="closeModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-lg transition-all">
+          <button onclick="closeModal()" class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-bold py-2 px-4 rounded-lg transition-all lg:px-6 lg:py-3">
             Tutup
           </button>
         </div>
@@ -167,11 +261,12 @@
       const jenis = document.getElementById('filterJenis').value;
       
       // Demo implementation that would be replaced with actual filtering
-      const allItems = document.querySelectorAll('#laporanList > div:not(#emptyState)');
+      const mobileItems = document.querySelectorAll('.lg\\:hidden > div');
+      const desktopItems = document.querySelectorAll('.lg\\:grid > div');
       let visibleCount = 0;
       
-      allItems.forEach(item => {
-        // This is simplified logic for demo purposes
+      // Filter mobile items
+      mobileItems.forEach(item => {
         const itemStatus = item.querySelector('.rounded-full').textContent.toLowerCase();
         const itemJenis = item.querySelector('h3').textContent.toLowerCase();
         
@@ -181,6 +276,21 @@
         if (statusMatch && jenisMatch) {
           item.classList.remove('hidden');
           visibleCount++;
+        } else {
+          item.classList.add('hidden');
+        }
+      });
+      
+      // Filter desktop items
+      desktopItems.forEach(item => {
+        const itemStatus = item.querySelector('.rounded-full').textContent.toLowerCase();
+        const itemJenis = item.querySelector('h3').textContent.toLowerCase();
+        
+        const statusMatch = status === 'all' || itemStatus.includes(status);
+        const jenisMatch = jenis === 'all' || itemJenis.includes(jenis);
+        
+        if (statusMatch && jenisMatch) {
+          item.classList.remove('hidden');
         } else {
           item.classList.add('hidden');
         }
@@ -200,32 +310,32 @@
       
       if (id === 'LP-20230615-001') {
         detailHTML = `
-          <div class="space-y-4">
+          <div class="space-y-4 lg:space-y-6 lg:w-full">
             <div class="flex items-center">
               <span class="bg-yellow-100 text-yellow-800 text-xs px-2 py-1 rounded-full mr-2">Diproses</span>
               <span class="text-sm text-gray-500">Terakhir diupdate: 16 Juni 2023</span>
             </div>
             
-            <h4 class="font-bold text-primary">Jalan Rusak</h4>
+            <h4 class="font-bold text-primary lg:text-xl">Jalan Rusak</h4>
             
-            <p class="text-gray-600">Jalan menuju blok B3 berlubang dan sulit dilalui kendaraan. Akibatnya, pengangkutan hasil panen menjadi terhambat.</p>
+            <p class="text-gray-600 lg:text-base">Jalan menuju blok B3 berlubang dan sulit dilalui kendaraan. Akibatnya, pengangkutan hasil panen menjadi terhambat.</p>
             
-            <div class="bg-gray-50 p-3 rounded-lg">
+            <div class="bg-gray-50 p-3 rounded-lg lg:p-5">
               <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium">ID Laporan</span>
-                <span class="text-sm">LP-20230615-001</span>
+                <span class="text-sm font-medium lg:text-base">ID Laporan</span>
+                <span class="text-sm lg:text-base">LP-20230615-001</span>
               </div>
               <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium">Tanggal</span>
-                <span class="text-sm">15 Juni 2023</span>
+                <span class="text-sm font-medium lg:text-base">Tanggal</span>
+                <span class="text-sm lg:text-base">15 Juni 2023</span>
               </div>
               <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium">Lokasi</span>
-                <span class="text-sm">Blok B3</span>
+                <span class="text-sm font-medium lg:text-base">Lokasi</span>
+                <span class="text-sm lg:text-base">Blok B3</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-sm font-medium">Pelapor</span>
-                <span class="text-sm">Budi</span>
+                <span class="text-sm font-medium lg:text-base">Pelapor</span>
+                <span class="text-sm lg:text-base">Budi</span>
               </div>
             </div>
             
@@ -234,45 +344,45 @@
             </div>
             
             <div>
-              <h5 class="font-medium mb-2">Tindak Lanjut:</h5>
-              <p class="text-sm text-gray-600">Tim maintenance akan melakukan perbaikan pada tanggal 18 Juni 2023.</p>
+              <h5 class="font-medium mb-2 lg:text-lg">Tindak Lanjut:</h5>
+              <p class="text-sm text-gray-600 lg:text-base">Tim maintenance akan melakukan perbaikan pada tanggal 18 Juni 2023.</p>
             </div>
           </div>
         `;
       } else {
         detailHTML = `
-          <div class="space-y-4">
+          <div class="space-y-4 lg:space-y-6 lg:w-full">
             <div class="flex items-center">
               <span class="bg-green-100 text-green-800 text-xs px-2 py-1 rounded-full mr-2">Selesai</span>
               <span class="text-sm text-gray-500">Terakhir diupdate: 12 Juni 2023</span>
             </div>
             
-            <h4 class="font-bold text-primary">${id === 'LP-20230610-003' ? 'Serangan Hama' : 'Kerusakan Fasilitas'}</h4>
+            <h4 class="font-bold text-primary lg:text-xl">${id === 'LP-20230610-003' ? 'Serangan Hama' : 'Kerusakan Fasilitas'}</h4>
             
-            <p class="text-gray-600">${id === 'LP-20230610-003' ? 'Terdapat serangan hama belalang pada tanaman muda di blok A2.' : 'Jembatan timbang di area pengumpulan hasil rusak.'}</p>
+            <p class="text-gray-600 lg:text-base">${id === 'LP-20230610-003' ? 'Terdapat serangan hama belalang pada tanaman muda di blok A2.' : 'Jembatan timbang di area pengumpulan hasil rusak.'}</p>
             
-            <div class="bg-gray-50 p-3 rounded-lg">
+            <div class="bg-gray-50 p-3 rounded-lg lg:p-5">
               <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium">ID Laporan</span>
-                <span class="text-sm">${id}</span>
+                <span class="text-sm font-medium lg:text-base">ID Laporan</span>
+                <span class="text-sm lg:text-base">${id}</span>
               </div>
               <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium">Tanggal</span>
-                <span class="text-sm">${id === 'LP-20230610-003' ? '10 Juni 2023' : '5 Juni 2023'}</span>
+                <span class="text-sm font-medium lg:text-base">Tanggal</span>
+                <span class="text-sm lg:text-base">${id === 'LP-20230610-003' ? '10 Juni 2023' : '5 Juni 2023'}</span>
               </div>
               <div class="flex justify-between mb-2">
-                <span class="text-sm font-medium">Lokasi</span>
-                <span class="text-sm">${id === 'LP-20230610-003' ? 'Blok A2' : 'Area Pengumpulan'}</span>
+                <span class="text-sm font-medium lg:text-base">Lokasi</span>
+                <span class="text-sm lg:text-base">${id === 'LP-20230610-003' ? 'Blok A2' : 'Area Pengumpulan'}</span>
               </div>
               <div class="flex justify-between">
-                <span class="text-sm font-medium">Pelapor</span>
-                <span class="text-sm">Budi</span>
+                <span class="text-sm font-medium lg:text-base">Pelapor</span>
+                <span class="text-sm lg:text-base">Budi</span>
               </div>
             </div>
             
             <div>
-              <h5 class="font-medium mb-2">Tindak Lanjut:</h5>
-              <p class="text-sm text-gray-600">${id === 'LP-20230610-003' ? 'Penyemprotan pestisida telah dilakukan pada tanggal 11 Juni 2023.' : 'Jembatan timbang telah diperbaiki dan dapat digunakan kembali sejak 8 Juni 2023.'}</p>
+              <h5 class="font-medium mb-2 lg:text-lg">Tindak Lanjut:</h5>
+              <p class="text-sm text-gray-600 lg:text-base">${id === 'LP-20230610-003' ? 'Penyemprotan pestisida telah dilakukan pada tanggal 11 Juni 2023.' : 'Jembatan timbang telah diperbaiki dan dapat digunakan kembali sejak 8 Juni 2023.'}</p>
             </div>
           </div>
         `;
@@ -296,23 +406,23 @@
     });
   </script>
 
-  <!-- Footer Navigation -->
+  <!-- Footer Navigation - Visible on all screen sizes -->
   <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg flex justify-around text-center">
-    <a href="index.html" class="py-3 flex-1 flex flex-col items-center text-gray-600">
-      <i class="fas fa-home text-lg"></i>
-      <span class="text-xs mt-1">Beranda</span>
+    <a href="index.html" class="py-3 flex-1 flex flex-col items-center text-gray-600 lg:py-4">
+      <i class="fas fa-home text-lg lg:text-xl"></i>
+      <span class="text-xs mt-1 lg:text-sm lg:mt-2">Beranda</span>
     </a>
-    <a href="form-pelaporan.html" class="py-3 flex-1 flex flex-col items-center text-gray-600">
-      <i class="fas fa-exclamation-triangle text-lg"></i>
-      <span class="text-xs mt-1">Lapor</span>
+    <a href="form-pelaporan.html" class="py-3 flex-1 flex flex-col items-center text-gray-600 lg:py-4">
+      <i class="fas fa-exclamation-triangle text-lg lg:text-xl"></i>
+      <span class="text-xs mt-1 lg:text-sm lg:mt-2">Lapor</span>
     </a>
-    <a href="riwayat.html" class="py-3 flex-1 flex flex-col items-center text-primary font-bold">
-      <i class="fas fa-history text-lg"></i>
-      <span class="text-xs mt-1">Riwayat</span>
+    <a href="riwayat.html" class="py-3 flex-1 flex flex-col items-center text-primary font-bold lg:py-4">
+      <i class="fas fa-history text-lg lg:text-xl"></i>
+      <span class="text-xs mt-1 lg:text-sm lg:mt-2">Riwayat</span>
     </a>
-    <a href="panduan.html" class="py-3 flex-1 flex flex-col items-center text-gray-600">
-      <i class="fas fa-book text-lg"></i>
-      <span class="text-xs mt-1">Panduan</span>
+    <a href="panduan.html" class="py-3 flex-1 flex flex-col items-center text-gray-600 lg:py-4">
+      <i class="fas fa-book text-lg lg:text-xl"></i>
+      <span class="text-xs mt-1 lg:text-sm lg:mt-2">Panduan</span>
     </a>
   </nav>
 </body>

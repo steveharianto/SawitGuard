@@ -21,80 +21,105 @@
       }
     }
   </script>
+  <style>
+    /* Custom styles for desktop */
+    @media (min-width: 1024px) {
+      .desktop-container {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+    }
+  </style>
 </head>
 <body class="bg-gray-100 min-h-screen font-sans pb-16">
   <!-- Header -->
-  <header class="bg-primary text-white p-4 shadow-md">
-    <div class="flex items-center">
+  <header class="bg-primary text-white p-4 shadow-md lg:py-6">
+    <div class="flex items-center desktop-container">
       <a href="index.html" class="text-white mr-4">
         <i class="fas fa-arrow-left"></i>
       </a>
-      <img src="images/logo.png" alt="SawitGuard Logo" class="h-10 mr-3">
-      <h1 class="text-xl font-bold">Form Pelaporan Gangguan</h1>
+      <img src="images/logo.png" alt="SawitGuard Logo" class="h-10 mr-3 lg:h-12">
+      <h1 class="text-xl font-bold lg:text-2xl">Form Pelaporan Gangguan</h1>
     </div>
   </header>
 
   <!-- Main Content -->
-  <main class="container mx-auto p-4 mt-2 max-w-md">
-    <form id="laporanForm" class="bg-white rounded-lg shadow-md p-6" onsubmit="submitForm(event)">
-      <!-- Jenis Gangguan -->
-      <div class="mb-4">
-        <label for="jenisGangguan" class="block text-primary font-medium mb-2">
-          <i class="fas fa-exclamation-triangle mr-2"></i>Jenis Gangguan
-        </label>
-        <select id="jenisGangguan" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary">
-          <option value="" disabled selected>Pilih jenis gangguan</option>
-          <option value="jalan">Jalan Rusak</option>
-          <option value="hama">Serangan Hama</option>
-          <option value="fasilitas">Kerusakan Fasilitas</option>
-          <option value="lainnya">Lainnya</option>
-        </select>
+  <main class="container mx-auto p-4 mt-2 lg:mt-8 desktop-container">
+    <div class="lg:max-w-3xl lg:mx-auto">
+      <div class="hidden lg:block mb-8 text-center">
+        <div class="inline-block bg-white rounded-full p-3 shadow-md text-primary">
+          <i class="fas fa-exclamation-triangle text-3xl"></i>
+        </div>
       </div>
       
-      <!-- Deskripsi -->
-      <div class="mb-4">
-        <label for="deskripsi" class="block text-primary font-medium mb-2">
-          <i class="fas fa-align-left mr-2"></i>Deskripsi
-        </label>
-        <textarea id="deskripsi" rows="3" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Jelaskan gangguan yang terjadi..."></textarea>
-      </div>
-      
-      <!-- Upload Foto -->
-      <div class="mb-4">
-        <label for="foto" class="block text-primary font-medium mb-2">
-          <i class="fas fa-camera mr-2"></i>Unggah Foto
-        </label>
-        <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:bg-gray-50 cursor-pointer">
-          <input type="file" id="foto" accept="image/*" class="hidden" onchange="previewImage(event)">
-          <label for="foto" class="cursor-pointer">
-            <div id="preview" class="flex flex-col items-center">
-              <i class="fas fa-cloud-upload-alt text-gray-400 text-4xl mb-2"></i>
-              <span class="text-gray-500">Klik untuk unggah foto</span>
-            </div>
+      <form id="laporanForm" class="bg-white rounded-lg shadow-md p-6 lg:p-8" onsubmit="submitForm(event)">
+        <!-- Jenis Gangguan -->
+        <div class="mb-4 lg:mb-6">
+          <label for="jenisGangguan" class="block text-primary font-medium mb-2 lg:text-lg">
+            <i class="fas fa-exclamation-triangle mr-2"></i>Jenis Gangguan
           </label>
+          <select id="jenisGangguan" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary lg:p-4">
+            <option value="" disabled selected>Pilih jenis gangguan</option>
+            <option value="jalan">Jalan Rusak</option>
+            <option value="hama">Serangan Hama</option>
+            <option value="fasilitas">Kerusakan Fasilitas</option>
+            <option value="lainnya">Lainnya</option>
+          </select>
         </div>
-      </div>
-      
-      <!-- Lokasi -->
-      <div class="mb-6">
-        <label for="lokasi" class="block text-primary font-medium mb-2">
-          <i class="fas fa-map-marker-alt mr-2"></i>Lokasi
-        </label>
-        <div class="flex space-x-2">
-          <button type="button" id="getLocation" class="flex-1 bg-primary text-white p-3 rounded-lg hover:bg-green-800 transition-all">
-            <i class="fas fa-crosshairs mr-2"></i>Lokasi Otomatis
-          </button>
-          <input type="text" id="lokasi" required class="flex-1 p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Blok/Area">
+        
+        <!-- Deskripsi -->
+        <div class="mb-4 lg:mb-6">
+          <label for="deskripsi" class="block text-primary font-medium mb-2 lg:text-lg">
+            <i class="fas fa-align-left mr-2"></i>Deskripsi
+          </label>
+          <textarea id="deskripsi" rows="3" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary lg:p-4" placeholder="Jelaskan gangguan yang terjadi..."></textarea>
         </div>
-        <input type="hidden" id="latitude">
-        <input type="hidden" id="longitude">
-      </div>
+        
+        <!-- Desktop 2 Column Layout -->
+        <div class="lg:flex lg:space-x-6">
+          <!-- Upload Foto -->
+          <div class="mb-4 lg:mb-6 lg:flex-1">
+            <label for="foto" class="block text-primary font-medium mb-2 lg:text-lg">
+              <i class="fas fa-camera mr-2"></i>Unggah Foto
+            </label>
+            <div class="border-2 border-dashed border-gray-300 rounded-lg p-4 text-center hover:bg-gray-50 cursor-pointer lg:min-h-[200px] lg:flex lg:items-center lg:justify-center">
+              <input type="file" id="foto" accept="image/*" class="hidden" onchange="previewImage(event)">
+              <label for="foto" class="cursor-pointer w-full">
+                <div id="preview" class="flex flex-col items-center">
+                  <i class="fas fa-cloud-upload-alt text-gray-400 text-4xl mb-2 lg:text-5xl lg:mb-4"></i>
+                  <span class="text-gray-500 lg:text-lg">Klik untuk unggah foto</span>
+                </div>
+              </label>
+            </div>
+          </div>
+          
+          <!-- Lokasi -->
+          <div class="mb-6 lg:flex-1">
+            <label for="lokasi" class="block text-primary font-medium mb-2 lg:text-lg">
+              <i class="fas fa-map-marker-alt mr-2"></i>Lokasi
+            </label>
+            <div class="flex flex-col space-y-3 lg:h-[calc(100%-2rem)] lg:justify-between">
+              <button type="button" id="getLocation" class="bg-primary text-white p-3 rounded-lg hover:bg-green-800 transition-all lg:p-4">
+                <i class="fas fa-crosshairs mr-2"></i>Lokasi Otomatis
+              </button>
+              <input type="text" id="lokasi" required class="p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary focus:border-primary lg:p-4 lg:flex-grow" placeholder="Blok/Area">
+            </div>
+            <input type="hidden" id="latitude">
+            <input type="hidden" id="longitude">
+          </div>
+        </div>
+        
+        <!-- Tombol Kirim -->
+        <button type="submit" class="w-full bg-secondary hover:bg-orange-500 text-white font-bold py-3 px-4 rounded-lg transition-all text-lg lg:py-4 lg:text-xl lg:mt-4">
+          <i class="fas fa-paper-plane mr-2"></i>Kirim Laporan
+        </button>
+      </form>
       
-      <!-- Tombol Kirim -->
-      <button type="submit" class="w-full bg-secondary hover:bg-orange-500 text-white font-bold py-3 px-4 rounded-lg transition-all text-lg">
-        <i class="fas fa-paper-plane mr-2"></i>Kirim Laporan
-      </button>
-    </form>
+      <!-- Desktop Footer - Only visible on large screens -->
+      <footer class="hidden lg:block text-center mt-16 text-gray-600 p-4">
+        <p>© 2023 SawitGuard - Sistem Pelaporan Gangguan Kebun Kelapa Sawit</p>
+      </footer>
+    </div>
   </main>
 
   <!-- Script -->
@@ -106,7 +131,7 @@
       if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
-          preview.innerHTML = `<img src="${e.target.result}" class="max-h-40 rounded mb-2">
+          preview.innerHTML = `<img src="${e.target.result}" class="max-h-40 lg:max-h-[150px] rounded mb-2">
                               <span class="text-gray-500">Foto dipilih</span>`;
         }
         reader.readAsDataURL(file);
@@ -144,23 +169,23 @@
     }
   </script>
 
-  <!-- Footer Navigation -->
+  <!-- Footer Navigation - Visible on all screen sizes -->
   <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg flex justify-around text-center">
-    <a href="index.html" class="py-3 flex-1 flex flex-col items-center text-gray-600">
-      <i class="fas fa-home text-lg"></i>
-      <span class="text-xs mt-1">Beranda</span>
+    <a href="index.html" class="py-3 flex-1 flex flex-col items-center text-gray-600 lg:py-4">
+      <i class="fas fa-home text-lg lg:text-xl"></i>
+      <span class="text-xs mt-1 lg:text-sm lg:mt-2">Beranda</span>
     </a>
-    <a href="form-pelaporan.html" class="py-3 flex-1 flex flex-col items-center text-primary font-bold">
-      <i class="fas fa-exclamation-triangle text-lg"></i>
-      <span class="text-xs mt-1">Lapor</span>
+    <a href="form-pelaporan.html" class="py-3 flex-1 flex flex-col items-center text-primary font-bold lg:py-4">
+      <i class="fas fa-exclamation-triangle text-lg lg:text-xl"></i>
+      <span class="text-xs mt-1 lg:text-sm lg:mt-2">Lapor</span>
     </a>
-    <a href="riwayat.html" class="py-3 flex-1 flex flex-col items-center text-gray-600">
-      <i class="fas fa-history text-lg"></i>
-      <span class="text-xs mt-1">Riwayat</span>
+    <a href="riwayat.html" class="py-3 flex-1 flex flex-col items-center text-gray-600 lg:py-4">
+      <i class="fas fa-history text-lg lg:text-xl"></i>
+      <span class="text-xs mt-1 lg:text-sm lg:mt-2">Riwayat</span>
     </a>
-    <a href="panduan.html" class="py-3 flex-1 flex flex-col items-center text-gray-600">
-      <i class="fas fa-book text-lg"></i>
-      <span class="text-xs mt-1">Panduan</span>
+    <a href="panduan.html" class="py-3 flex-1 flex flex-col items-center text-gray-600 lg:py-4">
+      <i class="fas fa-book text-lg lg:text-xl"></i>
+      <span class="text-xs mt-1 lg:text-sm lg:mt-2">Panduan</span>
     </a>
   </nav>
 </body>
