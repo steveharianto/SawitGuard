@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SawitGuard</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2E7D32',    // Hijau gelap
+            secondary: '#FFA726',  // Oranye terang
+          }
+        }
+      }
+    }
+    
+    // Redirect to home page after 3 seconds
+    setTimeout(() => window.location.href = "index.html", 3000);
+  </script>
+</head>
+<body class="bg-primary min-h-screen flex flex-col items-center justify-center">
+  <div class="text-center p-8 animate-pulse">
+    <img src="images/logo.png" alt="SawitGuard Logo" class="w-48 mx-auto mb-6">
+    <h1 class="text-white text-3xl font-bold mb-2">SawitGuard</h1>
+    <p class="text-secondary text-lg">Sistem Pelaporan Gangguan Kebun Kelapa Sawit</p>
+  </div>
+  <div class="mt-8">
+    <div class="w-12 h-1 bg-secondary rounded-full animate-bounce"></div>
+  </div>
+</body>
+</html>

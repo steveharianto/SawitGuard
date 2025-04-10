@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SawitGuard - Beranda</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#2E7D32',    // Hijau gelap
+            secondary: '#FFA726',  // Oranye terang
+          },
+          fontFamily: {
+            sans: ['Poppins', 'Roboto', 'sans-serif'],
+          }
+        }
+      }
+    }
+    
+    // Show splash screen
+    document.addEventListener('DOMContentLoaded', function() {
+      const splashScreen = document.getElementById('splashScreen');
+      const mainContent = document.getElementById('mainContent');
+      
+      // Hide splash after 2 seconds
+      setTimeout(() => {
+        splashScreen.classList.add('opacity-0');
+        setTimeout(() => {
+          splashScreen.classList.add('hidden');
+          mainContent.classList.remove('hidden');
+          mainContent.classList.add('opacity-100');
+        }, 300);
+      }, 2000);
+    });
+  </script>
+  <style>
+    .transition-opacity {
+      transition: opacity 0.3s ease-in-out;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 min-h-screen font-sans pb-16">
+  <!-- Splash Screen -->
+  <div id="splashScreen" class="fixed inset-0 bg-primary flex flex-col items-center justify-center z-50 transition-opacity">
+    <div class="text-center p-8 animate-pulse">
+      <img src="images/logo.png" alt="SawitGuard Logo" class="w-48 mx-auto mb-6">
+      <h1 class="text-white text-3xl font-bold mb-2">SawitGuard</h1>
+      <p class="text-secondary text-lg">Sistem Pelaporan Gangguan Kebun Kelapa Sawit</p>
+    </div>
+    <div class="mt-8">
+      <div class="w-12 h-1 bg-secondary rounded-full animate-bounce"></div>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div id="mainContent" class="hidden opacity-0 transition-opacity">
+    <!-- Header -->
+    <header class="bg-primary text-white p-4 shadow-md">
+      <div class="flex items-center justify-center">
+        <img src="images/logo.png" alt="SawitGuard Logo" class="h-10 mr-3">
+        <h1 class="text-xl font-bold">SawitGuard</h1>
+      </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto p-4 mt-4">
+      <div class="text-center mb-6">
+        <h2 class="text-2xl font-bold text-primary">Selamat Datang</h2>
+        <p class="text-gray-600">Pilih opsi di bawah untuk melanjutkan</p>
+      </div>
+
+      <!-- Main Buttons -->
+      <div class="grid grid-cols-1 gap-4 max-w-md mx-auto">
+        <a href="form-pelaporan.html" class="bg-secondary hover:bg-orange-500 text-white p-6 rounded-lg shadow-md text-center transition-all flex items-center justify-center">
+          <i class="fas fa-exclamation-triangle mr-3 text-2xl"></i>
+          <span class="text-xl font-bold">Laporkan Gangguan</span>
+        </a>
+        
+        <a href="riwayat.html" class="bg-primary hover:bg-green-800 text-white p-6 rounded-lg shadow-md text-center transition-all flex items-center justify-center">
+          <i class="fas fa-history mr-3 text-2xl"></i>
+          <span class="text-xl font-bold">Riwayat Laporan</span>
+        </a>
+        
+        <a href="panduan.html" class="bg-white hover:bg-gray-100 text-primary p-6 rounded-lg shadow-md text-center transition-all border border-primary flex items-center justify-center">
+          <i class="fas fa-book mr-3 text-2xl"></i>
+          <span class="text-xl font-bold">Panduan</span>
+        </a>
+      </div>
+    </main>
+
+    <!-- Footer Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg flex justify-around text-center">
+      <a href="index.html" class="py-3 flex-1 flex flex-col items-center text-primary font-bold">
+        <i class="fas fa-home text-lg"></i>
+        <span class="text-xs mt-1">Beranda</span>
+      </a>
+      <a href="form-pelaporan.html" class="py-3 flex-1 flex flex-col items-center text-gray-600">
+        <i class="fas fa-exclamation-triangle text-lg"></i>
+        <span class="text-xs mt-1">Lapor</span>
+      </a>
+      <a href="riwayat.html" class="py-3 flex-1 flex flex-col items-center text-gray-600">
+        <i class="fas fa-history text-lg"></i>
+        <span class="text-xs mt-1">Riwayat</span>
+      </a>
+      <a href="panduan.html" class="py-3 flex-1 flex flex-col items-center text-gray-600">
+        <i class="fas fa-book text-lg"></i>
+        <span class="text-xs mt-1">Panduan</span>
+      </a>
+    </nav>
+  </div>
+</body>
+</html>
